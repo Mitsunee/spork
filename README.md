@@ -7,7 +7,7 @@ Spork.js is a collection of small functions that for some reason aren't standard
 # Usage
 **For Browsers**: Download the latest `spork-{version}.js` or `spork-{version}.min.js` from [./builds](https://github.com/Mitsunee/spork/tree/main/builds).  
 ```html
-<script src="spork-0.0.0.js"></script>
+<script src="spork-1.0.0.js"></script>
 ```
 
 **For yarn/npm**: Install the package from the registry:  
