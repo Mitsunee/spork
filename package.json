@@ -1,14 +1,15 @@
 {
   "name": "@mitsunee/spork",
   "version": "1.0.0",
-  "description": "Spork.js is a collection of small functions that for some reason aren't standard js features yet.",
+  "description":
+    "Spork.js is a collection of small functions that for some reason aren't standard js features yet.",
   "repository": "git@github.com:Mitsunee/spork-js.git",
   "author": "Mitsunee",
   "license": "MIT",
   "main": "builds/spork.cjs.js",
   "module": "builds/spork.mjs.js",
-  "browser": "builds/spork-$npm_package_version.js",
-  "browserMinified": "builds/spork-$npm_package_version.min.js",
+  "browser": "browser/spork-$npm_package_version.js",
+  "minified": "browser/spork-$npm_package_version.min.js",
   "files": [
     "builds"
   ],
@@ -17,10 +18,12 @@
     "dev": "rollup -c -w",
     "test": "echo \"Error: no test specified\" && exit 1",
     "up": "yarn version --patch",
-    "postup": "yarn build && git add builds && git commit -m \"build v$npm_package_version\"",
+    "postup":
+      "yarn build && git add builds browser && git commit -m \"build v$npm_package_version\"",
     "up_minor": "yarn version --minor",
     "postup_minor": "yarn postup",
-    "publish": "yarn publish --access=public"
+    "publish": "yarn publish --access=public",
+    "postinstall": "ln -s spork-$npm_package_version.js browser/index.js"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",

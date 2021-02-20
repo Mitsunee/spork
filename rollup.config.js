@@ -5,17 +5,19 @@ import babel from '@rollup/plugin-babel';
 import { terser } from "rollup-plugin-terser";
 import pkg from './package.json';
 
-// cleanup builds dir
+// cleanup build dirs
 try {
 	fs.rmdirSync("./builds", {recursive: true});
+	fs.rmdirSync("./browser", {recursive: true});
 	fs.mkdirSync("./builds");
+	fs.mkdirSync("./browser");
 } catch (e) {
 	console.log(`Couldn't build due to error:\n\t${e}\n\nPlease confirm that you are using a recent version of node`);
 	process.exit(2);
 }
 
 pkg.browser = pkg.browser.replace(/\$npm\_package\_version/, pkg.version);
-pkg.browserMinified = pkg.browserMinified.replace(/\$npm\_package\_version/, pkg.version);
+pkg.minified = pkg.minified.replace(/\$npm\_package\_version/, pkg.version);
 
 // output
 console.log(`\nBuilding: Spork ${pkg.version}\n`);
@@ -40,7 +42,7 @@ export default [
 		input: 'src/browser.js',
 		output: {
 			name: 'Spork',
-			file: pkg.browserMinified,
+			file: pkg.minified,
 			format: 'umd'
 		},
 		plugins: [
@@ -53,6 +55,7 @@ export default [
 	// cjs and esm module builds
 	{
 		input: 'src/index.js',
+		external: ['node-fetch'],
 		output: [
 			{file: pkg.main, format: 'cjs'},
 			{file: pkg.module, format: 'es'}

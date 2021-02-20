@@ -5,24 +5,28 @@
 Spork.js is a collection of small functions that for some reason aren't standard js features yet.
 
 # Usage
-**For Browsers**: Download the latest `spork-{version}.js` or `spork-{version}.min.js` from [./builds](https://github.com/Mitsunee/spork/tree/main/builds).  
-```html
-<script src="spork-1.0.0.js"></script>
-```
-
-**For yarn/npm**: Install the package from the registry:  
+**Via yarn/npm**: Install the package from the registry:  
 ```bash
 npm install --save-dev @mitsunee/spork
+# or
+yarn add -D @mitsunee/spork
 ```
-Import/Require the package:
+Spork contains separate packages for the module and browser version. If you are using Spork in a browser please specify this during the import. The module version is also further split so that both `require` and ES6 `import` will work.
+
+Import the package:
 ```js
 // All modules
-const Spork = require("@mitsunee/spork"); // require OR
-import Spork from "@mitsunee/spork"; // ES6 import
+import Spork from "@mitsunee/spork"; // for node script use
+import Spork from "@mitsunee/spork/browser"; // for in-browser use
 
 // or specific module(s)
-const {range, clamp} = require("@mitsunee/spork"); // require OR
-import {range, clamp} from "@mitsunee/spork"; // ES6 import
+import {range, clamp} from "@mitsunee/spork"; // for node script use
+import {range, clamp} from "@mitsunee/spork/browser"; // for in-browser use
+```
+
+**For Browsers**: If you are not using npm/yarn you can also download the latest `spork-{version}.js` or `spork-{version}.min.js` from [./builds](https://github.com/Mitsunee/spork/tree/main/browser) and include it manually.
+```html
+<script src="spork-1.1.0.min.js"></script>
 ```
 
 # Modules
@@ -43,7 +47,7 @@ clamp(value: Number, min: Number, max: Number): (Number|Boolean)
 Returns: Number (or false for invalid arguments)
 
 ## fetchJson
-*v1.0.0+, async*
+*v1.0.0+, async* (Node script version requires package `node-fetch`)
 Asynchronous wrapper function for fetch that automatically parses received json data into an object
 ```ts
 fetchJson(url: String [, option: Mixed]): (Object|Boolean)
