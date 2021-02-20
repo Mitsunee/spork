@@ -1,8 +1,7 @@
 {
   "name": "@mitsunee/spork",
-  "version": "1.0.0",
-  "description":
-    "Spork.js is a collection of small functions that for some reason aren't standard js features yet.",
+  "version": "1.1.0",
+  "description": "Spork.js is a collection of small functions that for some reason aren't standard js features yet.",
   "repository": "git@github.com:Mitsunee/spork-js.git",
   "author": "Mitsunee",
   "license": "MIT",
@@ -18,8 +17,7 @@
     "dev": "rollup -c -w",
     "test": "echo \"Error: no test specified\" && exit 1",
     "up": "yarn version --patch",
-    "postup":
-      "yarn build && git add builds browser && git commit -m \"build v$npm_package_version\"",
+    "postup": "yarn build && git add builds browser && git commit -m \"build v$npm_package_version\"",
     "up_minor": "yarn version --minor",
     "postup_minor": "yarn postup",
     "publish": "yarn publish --access=public",
