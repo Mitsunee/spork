@@ -4,6 +4,8 @@
 ![version](https://img.shields.io/github/v/tag/Mitsunee/spork?style=for-the-badge) ![npmversion](https://img.shields.io/npm/v/@mitsunee/spork?style=for-the-badge)  
 Spork.js is a collection of small functions that for some reason aren't standard js features yet.
 
+https://www.npmjs.com/package/@mitsunee/spork
+
 # Usage
 **Via yarn/npm**: Install the package from the registry:  
 ```bash
@@ -16,17 +18,19 @@ Spork contains separate packages for the module and browser version. If you are 
 Import the package:
 ```js
 // All modules
-import Spork from "@mitsunee/spork"; // for node script use
+const Spork = require("@mitsunee/spork"); // for node scripts
+import Spork from "@mitsunee/spork"; // for node script modules
 import Spork from "@mitsunee/spork/browser"; // for in-browser use
 
 // or specific module(s)
-import {range, clamp} from "@mitsunee/spork"; // for node script use
+const {range, clamp} = require("@mitsunee/spork"); // for node scripts
+import {range, clamp} from "@mitsunee/spork"; // for node script modules
 import {range, clamp} from "@mitsunee/spork/browser"; // for in-browser use
 ```
 
 **For Browsers**: If you are not using npm/yarn you can also download the latest `spork-{version}.js` or `spork-{version}.min.js` from [./browser](https://github.com/Mitsunee/spork/tree/main/browser) and include it manually.
 ```html
-<script src="spork-1.1.0.min.js"></script>
+<script src="spork-1.1.2.min.js"></script>
 ```
 
 # Modules
