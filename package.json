@@ -1,6 +1,6 @@
 {
   "name": "@mitsunee/spork",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Spork.js is a collection of small functions that for some reason aren't standard js features yet.",
   "repository": "git@github.com:Mitsunee/spork-js.git",
   "author": "Mitsunee",
@@ -9,7 +9,10 @@
   "module": "builds/spork.mjs.js",
   "browser": "browser/spork-$npm_package_version.js",
   "minified": "browser/spork-$npm_package_version.min.js",
-  "files": ["builds", "browser"],
+  "files": [
+    "builds",
+    "browser"
+  ],
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
