@@ -24,7 +24,7 @@ import {range, clamp} from "@mitsunee/spork"; // for node script use
 import {range, clamp} from "@mitsunee/spork/browser"; // for in-browser use
 ```
 
-**For Browsers**: If you are not using npm/yarn you can also download the latest `spork-{version}.js` or `spork-{version}.min.js` from [./builds](https://github.com/Mitsunee/spork/tree/main/browser) and include it manually.
+**For Browsers**: If you are not using npm/yarn you can also download the latest `spork-{version}.js` or `spork-{version}.min.js` from [./browser](https://github.com/Mitsunee/spork/tree/main/browser) and include it manually.
 ```html
 <script src="spork-1.1.0.min.js"></script>
 ```
