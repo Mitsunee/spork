@@ -205,13 +205,9 @@
       return _fetchJson.apply(this, arguments);
     }
 
-    var Spork = {
-      range: range,
-      clamp: clamp,
-      fetchJson: fetchJson
-    };
-
-    exports.Spork = Spork;
+    exports.clamp = clamp;
+    exports.fetchJson = fetchJson;
+    exports.range = range;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
