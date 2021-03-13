@@ -25,7 +25,7 @@ console.log(`\nBuilding: Spork ${pkg.version}\n`);
 export default [
 	// browser version
 	{
-		input: 'src/browser.js',
+		input: 'src/index.js',
 		output: {
 			name: 'Spork',
 			file: pkg.browser,
@@ -34,12 +34,12 @@ export default [
 		plugins: [
 			resolve(),
 			commonjs(),
-			babel({babelrc: false, presets: ['@babel/preset-env']}),
+			babel({babelrc: false, presets: ['@babel/preset-env'], plugins: ["@babel/plugin-proposal-class-properties"]}),
 		]
 	},
 	// minified browser version
 	{
-		input: 'src/browser.js',
+		input: 'src/index.js',
 		output: {
 			name: 'Spork',
 			file: pkg.minified,
@@ -48,7 +48,7 @@ export default [
 		plugins: [
 			resolve(),
 			commonjs(),
-			babel({babelrc: false, presets: ['@babel/preset-env']}),
+			babel({babelrc: false, presets: ['@babel/preset-env'], plugins: ["@babel/plugin-proposal-class-properties"]}),
 			terser()
 		]
 	},
