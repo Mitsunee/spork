@@ -9,18 +9,24 @@ import convertTimeUnit from "./methods/convertTimeUnit";
  */
 class timeout {
     constructor(callback, timerLength, timerLengthUnit) {
-        this.__clean(); // to set default values
+        this.#clean(); // to set default values
         this.setCallback(callback);
         this.setTime(timerLength, timerLengthUnit);
     }
 
+    /** PRIVATE PROPERTIES **/
+    #timerId;
+    #timerLength;
+    #callback;
+    #running;
+
     /** INTERNAL METHODS **/
-    __clean() {
-        this.__timerId = null;
-        this.running = false;
+    #clean = () => {
+        this.#timerId = null;
+        this.#running = false;
         this.startTime = null;
     }
-    __convert = convertTimeUnit;
+    #convert = convertTimeUnit;
 
     /*
     * Method to start the timeout
@@ -28,11 +34,11 @@ class timeout {
     * returns Boolean (True if timeouts was started. Rejects with false if timeout was already running.)
     */
     start() {
-        if (this.running) return false;
+        if (this.#running) return false;
 
         this.startTime = Date.now();
-        this.__timerId = setTimeout(this.__callback.bind(this), this.__timerLength);
-        this.running = true;
+        this.#timerId = setTimeout(this.#callback.bind(this), this.#timerLength);
+        this.#running = true;
 
         return true;
     }
@@ -43,10 +49,10 @@ class timeout {
     * returns Boolena (True if timeout was canceled. Rejects with false if timeout wasn't running.)
     */
     cancel() {
-        if (!this.running) return false;
+        if (!this.#running) return false;
 
-        clearTimeout(this.__timerId);
-        this.__clean();
+        clearTimeout(this.#timerId);
+        this.#clean();
 
         return true;
     }
@@ -61,9 +67,9 @@ class timeout {
     */
     setTime(timerLength, timerLengthUnit) {
         if (isNaN(Number(timerLength))) throw new TypeError("timerLength must be numerical");
-        if (this.running) return false;
+        if (this.#running) return false;
 
-        this.__timerLength = this.__convert(timerLength, timerLengthUnit || "ms");
+        this.#timerLength = this.#convert(timerLength, timerLengthUnit || "ms");
 
         return true;
     }
@@ -77,14 +83,21 @@ class timeout {
     */
     setCallback(callback) {
         if (typeof callback !== "function") throw new TypeError("callback must be a function");
-        if (this.running) return false;
+        if (this.#running) return false;
 
-        this.__callback = () => {
-            this.__clean();
+        this.#callback = () => {
+            this.#clean();
             return callback();
         }
 
         return true;
+    }
+
+    /*
+     * Getter for running property
+     */
+    get running() {
+        return this.#running;
     }
 }
 
