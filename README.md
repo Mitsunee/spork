@@ -50,21 +50,6 @@ clamp(value: Number, min: Number, max: Number): (Number|Boolean)
 
 Returns: Number (or false for invalid arguments)
 
-## fetchJson
-*v1.0.0+, async* (Node script version requires package `node-fetch`)
-Asynchronous wrapper function for fetch that automatically parses received json data into an object
-```ts
-fetchJson(url: String [, option: Mixed]): (Object|Boolean)
-```
-
-- String `url` - the url to fetch
-- Mixed `option` (optional) - either:
-	- Object: your custom init (note that only typeof is checked, validity is not questioned)
-	- String `"forceReload"` for the provided forceReload header
-	- Boolean false (default)
-
-Returns: Object (potentially Array) or false if something went wrong (see error in console)
-
 ## range
 *v1.0.0+*
 Generates an Array with all Numbers in a specified range
@@ -83,3 +68,12 @@ range(3, undefined, 0.5)
 // [ 0, 0.5, 1, 1.5, 2, 2.5 ]
 ```
 Returns: Array (or false if no valid argument was provided)
+
+# Changelog
+
+- 1.2.0
+	- Removed `fetchJson`
+	- Added `interval` and `timeout`
+	- (Hopefully) fixed errors related to symlinks
+- 1.1.x
+	- Fixed external dependencies, moved browser builds
