@@ -15,6 +15,7 @@
   ],
   "scripts": {
     "build": "rollup -c",
+    "postbuild": "ln -sf spork-$npm_package_version.js browser/index.js",
     "dev": "rollup -c -w",
     "test": "echo \"Error: no test specified\" && exit 1",
     "up": "yarn version --patch",
