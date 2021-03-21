@@ -25,7 +25,7 @@ console.log(`\nBuilding: Spork ${pkg.version}\n`);
 export default [
 	// browser version
 	{
-		input: 'src/index.js',
+		input: 'src/browser.js',
 		output: {
 			name: 'Spork',
 			file: pkg.browser,
@@ -39,7 +39,7 @@ export default [
 	},
 	// minified browser version
 	{
-		input: 'src/index.js',
+		input: 'src/browser.js',
 		output: {
 			name: 'Spork',
 			file: pkg.minified,
