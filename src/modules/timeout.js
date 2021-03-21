@@ -1,4 +1,4 @@
-import convertTimeUnit from "./methods/convertTimeUnit";
+import convertTimeUnit from "../utils/convertTimeUnit";
 
 /*
  * Class that wraps setTimeout and provides additional information
