@@ -72,7 +72,6 @@ Returns: Array (or false if no valid argument was provided)
 # Changelog
 
 - 1.2.0
-	- Removed `fetchJson`
 	- Added `interval` and `timeout`
 	- (Hopefully) fixed errors related to symlinks
 - 1.1.x
