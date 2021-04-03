@@ -5,6 +5,8 @@ const print = (text) => {
   console.log(chalk.white(text));
 }
 
+// NOTE: this function is meant to describe objects and arrays
+//       It does NOT handle null and Promises correctly!
 const printObject = (obj, level = 1, comma = false) => {
   const isArray = obj instanceof Array;
   const printKey = (key) => `${isArray ? "" : '"'}${key}${isArray ? "": '"'}`;
@@ -73,7 +75,9 @@ const valueDescriptor = (value) => {
     case "undefined":
       return chalk.grey("undefined");
     case "object":
-      return value instanceof Array ? "[]" : "{}";
+      return value instanceof Array
+        ? `[ ${chalk.grey("empty")} ]`
+        : `{ ${chalk.grey("empty")} }`;
     default:
       return chalk.yellow(`${value}`);
   }
