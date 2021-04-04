@@ -7,11 +7,12 @@ const print = (text) => {
 
 // NOTE: this function is meant to describe objects and arrays
 //       It does NOT handle null and Promises correctly!
-const printObject = (obj, level = 1, comma = false) => {
+const printObject = (obj, level = 1, comma = false, maxdepth = false) => {
   const isArray = obj instanceof Array;
-  const printKey = (key) => `${isArray ? "" : '"'}${key}${isArray ? "": '"'}`;
+  const printKey = (key) => isArray ? chalk.yellow(key) : chalk.blue(`"${key}"`);
   const spacing = " ".repeat(level);
   const objKeys = Object.keys(obj);
+  const depth = (level - 1) / 2;
 
   // empty check
   if (objKeys.length === 0) {
@@ -38,9 +39,10 @@ const printObject = (obj, level = 1, comma = false) => {
           obj[key] !== null
           && !(obj[key] instanceof Promise)
           && Object.keys(obj[key]).length > 0
+          && (maxdepth === false ? true : depth + 1 <= maxdepth)
         ) {
           print(`${spacing} ${printKey(key)}:`);
-          printObject(obj[key], level + 2, !isLastKey);
+          printObject(obj[key], level + 2, !isLastKey, maxdepth);
           break;
         }
       default:
@@ -52,8 +54,6 @@ const printObject = (obj, level = 1, comma = false) => {
   print(`${spacing}${isArray ? "]" : "}"}${comma ? "," : ""}`);
 };
 
-// NOTE: this function assumes objects and arrays to be empty!
-//       handle them with printObject() first!
 const valueDescriptor = (value) => {
   if (value === null) {
     return chalk.grey("null");
@@ -75,23 +75,27 @@ const valueDescriptor = (value) => {
     case "undefined":
       return chalk.grey("undefined");
     case "object":
-      return value instanceof Array
-        ? `[ ${chalk.grey("empty")} ]`
-        : `{ ${chalk.grey("empty")} }`;
+      const length = Object.values(value).length;
+      const isArray = value instanceof Array;
+      return `${isArray ? "[" : "{"} ${
+        length === 0
+          ? chalk.grey("empty")
+          : `${length} Element${length > 1 ? "s" : ""}`
+      } ${isArray ? "]" : "}"}`;
     default:
       return chalk.yellow(`${value}`);
   }
 }
 
 // TODO: write doc
-function log(value) {
+function log(value, maxdepth = false) {
   if (
     typeof value === "object"
     && value !== null
     && !(value instanceof Promise)
     && Object.keys(value).length > 0
   ) {
-    printObject(value, 1, false);
+    printObject(value, 1, false, maxdepth);
   } else {
     print(` ${valueDescriptor(value)}`);
   }
