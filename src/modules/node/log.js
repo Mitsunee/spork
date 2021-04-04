@@ -10,18 +10,22 @@ const print = (text) => {
 const printObject = (obj, level = 1, comma = false, maxdepth = false) => {
   const isArray = obj instanceof Array;
   const printKey = (key) => isArray ? chalk.yellow(key) : chalk.blue(`"${key}"`);
+  const inspection = inspect(obj);
+  const isInstanceOf = !isArray
+    ? chalk.cyan(inspection.substr(0, inspection.indexOf("{")))
+    : "";
   const spacing = " ".repeat(level);
   const objKeys = Object.keys(obj);
   const depth = (level - 1) / 2;
 
   // empty check
   if (objKeys.length === 0) {
-    print(`${spacing}${isArray ? "[]" : "{}"}`);
+    print(`${spacing}${isArray ? "[]" : `${isInstanceOf}{}`}`);
     return;
   }
 
   // opening bracket
-  print(`${spacing}${isArray ? "[" : "{"}`);
+  print(`${spacing}${isArray ? "[" : `${isInstanceOf}{`}`);
 
   // values
   for (let keyIndex in objKeys) {
@@ -63,7 +67,7 @@ const valueDescriptor = (value) => {
   }
   switch (typeof value) {
     case "function":
-      return chalk.cyan(`[Function: ${value.name}]`);
+      return chalk.cyan(inspect(value));
     case "string":
       return chalk.blue(`"${value}"`);
     case "boolean":
