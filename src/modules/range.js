@@ -13,24 +13,26 @@
  * returns Array (or false if no valid values given)
  */
 function range(start, stop, step, maxLength) {
-    // validate input
-    if (isNaN(start)) return false;
-    if (isNaN(stop)) {
-        stop = start;
-        start = 0;
-    }
-    if (stop < start) [stop, start] = [start, stop];
-    if (isNaN(step)) step = 1;
+  // validate input
+  if (isNaN(start)) return false;
+  if (isNaN(stop)) {
+    stop = start;
+    start = 0;
+  }
+  if (stop < start) [stop, start] = [start, stop];
+  if (isNaN(step)) step = 1;
 
-    // calculate length
-    let length = (stop - start) / step;
-    // DEBUG: console.log(`Calculated length: ${length}`);
-    if (!isNaN(maxLength)) length = Math.min(length, maxLength);
+  // calculate length
+  let length = (stop - start) / step;
+  // DEBUG: console.log(`Calculated length: ${length}`);
+  if (!isNaN(maxLength)) length = Math.min(length, maxLength);
 
-    // DEBUG: console.log({start, stop, step, maxLength, length});
+  // DEBUG: console.log({start, stop, step, maxLength, length});
 
-    // return array
-    return Array(0|length).fill(0).map((_, index) => index * step + start);
+  // return array
+  return Array(0 | length)
+    .fill(0)
+    .map((_, index) => index * step + start);
 }
 
 export default range;

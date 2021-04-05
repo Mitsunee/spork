@@ -5,10 +5,4 @@ import interval from "./modules/interval";
 
 import fetchJson from "./modules/browser/fetchJson";
 
-export {
-    range,
-    clamp,
-    timeout,
-    interval,
-    fetchJson
-};
+export { range, clamp, timeout, interval, fetchJson };

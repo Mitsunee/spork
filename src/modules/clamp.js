@@ -11,10 +11,10 @@
  * returns Number (or false for invalid arguments)
  */
 function clamp(value, min, max) {
-    if (isNaN(value) || isNaN(min) || isNaN(max)) return false;
-    if (min > value) return min;
-    if (max < value) return max;
-    return value;
+  if (isNaN(value) || isNaN(min) || isNaN(max)) return false;
+  if (min > value) return min;
+  if (max < value) return max;
+  return value;
 }
 
 export default clamp;
