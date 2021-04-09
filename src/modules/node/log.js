@@ -100,7 +100,14 @@ const valueDescriptor = value => {
   }
 };
 
-// TODO: write doc
+/*
+ * function log
+ *
+ * Logs any value, objects are printed in prettified json syntax.
+ *
+ * Any value - Value to log
+ * Number maxdepth (optional, default: false) - maxdepth for objects/arrays. false acts like Infinity
+ */
 function log(value, maxdepth = false) {
   if (
     typeof value === "object" &&
