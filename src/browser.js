@@ -1,9 +1,8 @@
 import range from "./modules/range";
 import clamp from "./modules/clamp";
-import fetchJson from "./modules/fetchJson.browser";
+import timeout from "./modules/timeout";
+import interval from "./modules/interval";
 
-export {
-    range,
-    clamp,
-    fetchJson
-};
+import fetchJson from "./modules/browser/fetchJson";
+
+export { range, clamp, timeout, interval, fetchJson };

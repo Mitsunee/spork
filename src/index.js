@@ -1,11 +1,9 @@
 import range from "./modules/range";
 import clamp from "./modules/clamp";
-import fetchJson from "./modules/fetchJson";
+import timeout from "./modules/timeout";
+import interval from "./modules/interval";
 
-const Spork = {
-    range,
-    clamp,
-    fetchJson
-};
+import fetchJson from "./modules/node/fetchJson.js";
+import log from "./modules/node/log.js";
 
-module.exports = Spork;
+export { range, clamp, timeout, interval, fetchJson, log };
